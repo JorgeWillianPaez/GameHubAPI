@@ -2,38 +2,38 @@
 {
     public class NoticiaModel
     {
-        private int _id;
-        private string _titulo;
-        private string _assunto;
-        private DateTime _descricao;
-        private Usuario _usuario;
-        private Categoria _categoria;
+        public int id;
+        public string titulo;
+        public string assunto;
+        public DateTime descricao;
+        public UsuarioModel usuario;
+        public CategoriaModel categoria;
 
-        public Noticia()
+        public NoticiaModel()
         {
-            _id = 0;
-            _titulo = string.Empty;
-            _assunto = string.Empty;
-            _descricao = DateTime.MinValue;
-            _usuario = null;
-            _categoria = null;
+            id = 0;
+            titulo = string.Empty;
+            assunto = string.Empty;
+            descricao = DateTime.MinValue;
+            usuario = null;
+            categoria = null;
         }
 
-        public Noticia(int id, string titulo, string assunto, DateTime descricao, Usuario usuario, Categoria categoria)
+        public NoticiaModel(int id, string titulo, string assunto, DateTime descricao, UsuarioModel usuario, CategoriaModel categoria)
         {
-            _id = id;
-            _titulo = titulo;
-            _assunto = assunto;
-            _descricao = descricao;
-            _usuario = usuario;
-            _categoria = categoria;
+            this.id = id;
+            this.titulo = titulo;
+            this.assunto = assunto;
+            this.descricao = descricao;
+            this.usuario = usuario;
+            this.categoria = categoria;
         }
 
-        public void Inserir(Noticia noticia)
+        public void Inserir(NoticiaModel noticia)
         {
         }
 
-        public void Alterar(int id, Noticia novaNoticia)
+        public void Alterar(int id, NoticiaModel novaNoticia)
         {
         }
 
@@ -41,11 +41,11 @@
         {
         }
 
-        public List<Noticia> Listar()
+        public List<NoticiaModel> Listar()
         {
         }
 
-        public Noticia Buscar(int id)
+        public NoticiaModel Buscar(int id)
         {
         }
     }
