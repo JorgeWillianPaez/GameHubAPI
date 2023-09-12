@@ -2,29 +2,29 @@
 {
     public class CategoriaModel
     {
-        private int _id;
-        private string _nome;
-        private string _descricao;
+        public int id;
+        public string nome;
+        public string descricao;
 
-        public Categoria()
+        public CategoriaModel()
         {
-            _id = 0;
-            _nome = string.Empty;
-            _descricao = string.Empty;
+            id = 0;
+            nome = string.Empty;
+            descricao = string.Empty;
         }
 
-        public Categoria(int id, string nome, string descricao)
+        public CategoriaModel(int id, string nome, string descricao)
         {
-            _id = id;
-            _nome = nome;
-            _descricao = descricao;
+            this.id = id;
+            this.nome = nome;
+            this.descricao = descricao;
         }
 
-        public void Inserir(Categoria categoria)
+        public void Inserir(CategoriaModel categoria)
         {
         }
 
-        public void Alterar(int id, Categoria novaCategoria)
+        public void Alterar(int id, CategoriaModel novaCategoria)
         {
         }
 
@@ -32,15 +32,15 @@
         {
         }
 
-        public List<Categoria> Listar()
+        public List<CategoriaModel> Listar()
         {
         }
 
-        public List<Categoria> ListarPorJogo(int idJogo)
+        public List<CategoriaModel> ListarPorJogo(int idJogo)
         {
         }
 
-        public Categoria Buscar(int id)
+        public CategoriaModel Buscar(int id)
         {
         }
     }

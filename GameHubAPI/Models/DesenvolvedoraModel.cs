@@ -2,32 +2,32 @@
 {
     public class DesenvolvedoraModel
     {
-        private int _id;
-        private string _nome;
-        private string _porte;
-        private Categoria _categoria;
+        public int id;
+        public string nome;
+        public string porte;
+        public CategoriaModel categoria;
 
-        public Desenvolvedora()
+        public DesenvolvedoraModel()
         {
-            _id = 0;
-            _nome = string.Empty;
-            _porte = string.Empty;
-            _categoria = null;
+            id = 0;
+            nome = string.Empty;
+            porte = string.Empty;
+            categoria = null;
         }
 
-        public Desenvolvedora(int id, string nome, string porte, Categoria categoria)
+        public DesenvolvedoraModel(int id, string nome, string porte, CategoriaModel categoria)
         {
-            _id = id;
-            _nome = nome;
-            _porte = porte;
-            _categoria = categoria;
+            this.id = id;
+            this.nome = nome;
+            this.porte = porte;
+            this.categoria = categoria;
         }
 
         public void InserirDesenvolvedora()
         {
         }
 
-        public void Alterar(int id, Desenvolvedora novaDesenvolvedora)
+        public void Alterar(int id, DesenvolvedoraModel novaDesenvolvedora)
         {
         }
 
@@ -35,11 +35,11 @@
         {
         }
 
-        public List<Desenvolvedora> Listar(string idCategoria)
+        public List<DesenvolvedoraModel> Listar(string idCategoria)
         {
         }
 
-        public Desenvolvedora Buscar(int id)
+        public DesenvolvedoraModel Buscar(int id)
         {
         }
     }

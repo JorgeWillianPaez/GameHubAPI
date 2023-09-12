@@ -2,32 +2,32 @@
 {
     public class ConquistaModel
     {
-        private int _id;
-        private string _nome;
-        private string _descricao;
-        private int _pontos;
+        public int id;
+        public string nome;
+        public string descricao;
+        public int pontos;
 
-        public Conquista()
+        public ConquistaModel()
         {
-            _id = 0;
-            _nome = string.Empty;
-            _descricao = string.Empty;
-            _pontos = 0;
+            id = 0;
+            nome = string.Empty;
+            descricao = string.Empty;
+            pontos = 0;
         }
 
-        public Conquista(int id, int nome, string descricao, int pontos)
+        public ConquistaModel(int id, int nome, string descricao, int pontos)
         {
-            _id = id;
-            _nome = nome;
-            _descricao = descricao;
-            _pontos = pontos;
+            this.id = id;
+            this.nome = nome;
+            this.descricao = descricao;
+            this.pontos = pontos;
         }
 
-        public void Inserir(Conquista conquista)
+        public void Inserir(ConquistaModel conquista)
         {
         }
 
-        public void Alterar(int id, Conquista novaConquista)
+        public void Alterar(int id, ConquistaModel novaConquista)
         {
         }
 
@@ -35,11 +35,11 @@
         {
         }
 
-        public List<Conquista> ListarPorJogo(int idJogo)
+        public List<ConquistaModel> ListarPorJogo(int idJogo)
         {
         }
 
-        public Conquista Buscar(int id)
+        public ConquistaModel Buscar(int id)
         {
         }
     }

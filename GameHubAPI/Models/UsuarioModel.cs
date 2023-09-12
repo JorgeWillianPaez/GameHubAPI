@@ -4,54 +4,13 @@ namespace GameHubAPI.Models
 {
     public class UsuarioModel
     {
-        private int id;
-        private string nome;
-        private string nickName;
-        private string email;
-        private DateOnly dataNascimento;
-        private string senha;
-        private string status;
-        private string usuarioAtivado;
-
-        public int Id
-        {
-            get => id;
-            set => id = value;
-        }
-        public string Nome
-        {
-            get => nome;
-            set => nome = value;
-        }
-        public string NickName
-        {
-            get => nickName;
-            set => nickName = value;
-        }
-        public string Email
-        {
-            get => email;
-            set => email = value;
-        }
-        public DateOnly DataNascimento
-        {
-            get => dataNascimento;
-            set => dataNascimento = value;
-        }
-        public string Senha
-        {
-            get => senha;
-            set => senha = value;
-        }
-        public string Status
-        {
-            get => status;
-            set => status = value;
-        }
-        public string UsuarioAtivado
-        {
-            get => usuarioAtivado;
-            set => usuarioAtivado = value;
-        }
+        public int id { get; set; }
+        public string? nome { get; set; }
+        public string? nickName { get; set; }
+        public string? email { get; set; }
+        public DateOnly dataNascimento { get; set; }
+        public string? senha { get; set;}
+        public string? status { get; set;}
+        public bool usuarioAtivado { get; set;}
     }
 }
