@@ -13,7 +13,7 @@ public class GameHubAPIDbContext : DbContext
     public DbSet<ImagemJogoModel>? ImagemJogo { get; set; }
     public DbSet<JogoModel>? Jogo { get; set; }
     public DbSet<NoticiaModel>? Noticia { get; set; }
-    public DbSet<ProgressoConquista>? ProgressoConquista { get; set; }
+    public DbSet<ProgressoConquistaModel>? ProgressoConquista { get; set; }
     public DbSet<PromocaoModel>? Promocao { get; set; }
     public DbSet<UsuarioModel>? Usuario { get; set; }
 

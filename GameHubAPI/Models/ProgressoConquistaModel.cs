@@ -1,6 +1,6 @@
 ﻿namespace GameHubAPI.Models
 {
-    public class ProgressoConquista
+    public class ProgressoConquistaModel
     {
         public int id { get; set; }
         public double progresso { get; set; }

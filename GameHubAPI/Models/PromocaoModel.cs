@@ -28,21 +28,5 @@
             this.status = status;
             this.categoria = categoria;
         }
-
-        public void Inserir(PromocaoModel promocao)
-        {
-        }
-
-        public void Alterar(int id, PromocaoModel novaPromocao)
-        {
-        }
-
-        public List<PromocaoModel> Listar(string status)
-        {
-        }
-
-        public PromocaoModel Buscar(int id)
-        {
-        }
     }
 }

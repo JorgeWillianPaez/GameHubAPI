@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 namespace GameHubAPI.Controllers;
 
 [ApiController]
-[Route("gamehubapi/noticia")]
+[Route("gamehubapi/[controller]")]
 public class NoticiaController : ControllerBase
 {
     private GameHubAPIDbContext? _context;
 
-    public NoticiaController(GameHubAPIDbContext context)
+    public NoticiaController(GameHubAPIDbContext dbContext)
     {
-        _context = context;
+        _context = dbContext;
     }
 
     [HttpGet]
-    [Route("noticia/list")]
-    public async Task<ActionResult<IEnumerable<NoticiaModel>>> List()
+    [Route("listar")]
+    public async Task<ActionResult<IEnumerable<NoticiaModel>>> Listar()
     {
         if (_context?.Noticia is null)
             return NotFound();
@@ -28,8 +28,8 @@ public class NoticiaController : ControllerBase
     }
 
     [HttpGet()]
-    [Route("noticia/find/{id}")]
-    public async Task<ActionResult<NoticiaModel>> Find([FromRoute] string id)
+    [Route("buscar/{id}")]
+    public async Task<ActionResult<NoticiaModel>> Buscar([FromRoute] string id)
     {
         if (_context?.Noticia is null)
             return NotFound();
@@ -40,8 +40,8 @@ public class NoticiaController : ControllerBase
     }
 
     [HttpPost]
-    [Route("noticia/create")]
-    public IActionResult Create(NoticiaModel noticia)
+    [Route("inserir")]
+    public IActionResult Inserir(NoticiaModel noticia)
     {
         _context?.Add(noticia);
         _context?.SaveChanges();
