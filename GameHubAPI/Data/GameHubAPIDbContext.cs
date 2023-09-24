@@ -3,8 +3,8 @@ using GameHubAPI.Models;
 namespace GameHubAPI.Data;
 public class GameHubAPIDbContext : DbContext
 {
-    public DbSet<Amizade>? Amizade { get; set; }
-    public DbSet<BibliotecaModel>? BibliotecaModel { get; set; }
+    public DbSet<AmizadeModel>? Amizade { get; set; }
+    public DbSet<BibliotecaModel>? Biblioteca { get; set; }
     public DbSet<CategoriaModel>? Categoria { get; set; }
     public DbSet<CompraModel>? Compra { get; set; }
     public DbSet<ConquistaModel>? Conquista { get; set; }

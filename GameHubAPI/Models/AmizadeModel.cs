@@ -1,6 +1,6 @@
 ﻿namespace GameHubAPI.Models
 {
-    public class Amizade
+    public class AmizadeModel
     {
         public int id { get; set; }
         public UsuarioModel? usuario1 { get; set; }
