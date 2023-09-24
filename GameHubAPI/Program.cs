@@ -1,4 +1,4 @@
-
+using GameHubAPI.Data;
 namespace GameHubAPI
 {
     public class Program
@@ -10,6 +10,7 @@ namespace GameHubAPI
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<GameHubAPIDbContext>();
 
             var app = builder.Build();
 
