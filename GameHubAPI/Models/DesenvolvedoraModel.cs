@@ -12,7 +12,7 @@
             id = 0;
             nome = string.Empty;
             porte = string.Empty;
-            categoria = null;
+            categoria = null!;
         }
 
         public DesenvolvedoraModel(int id, string nome, string porte, CategoriaModel categoria)
@@ -21,26 +21,6 @@
             this.nome = nome;
             this.porte = porte;
             this.categoria = categoria;
-        }
-
-        public void InserirDesenvolvedora()
-        {
-        }
-
-        public void Alterar(int id, DesenvolvedoraModel novaDesenvolvedora)
-        {
-        }
-
-        public bool Excluir(int id)
-        {
-        }
-
-        public List<DesenvolvedoraModel> Listar(string idCategoria)
-        {
-        }
-
-        public DesenvolvedoraModel Buscar(int id)
-        {
         }
     }
 

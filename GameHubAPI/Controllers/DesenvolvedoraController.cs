@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 namespace GameHubAPI.Controllers;
 
 [ApiController]
-[Route("gamehubapi/desenvolvedora")]
+[Route("gamehubapi/[controller]")]
 public class DesenvolvedoraController : ControllerBase
 {
     private GameHubAPIDbContext? _context;
 
-    public DesenvolvedoraController(GameHubAPIDbContext context)
+    public DesenvolvedoraController(GameHubAPIDbContext dbContext)
     {
-        _context = context;
+        _context = dbContext;
     }
 
     [HttpGet]
-    [Route("desenvolvedora/list")]
-    public async Task<ActionResult<IEnumerable<DesenvolvedoraModel>>> List()
+    [Route("listar")]
+    public async Task<ActionResult<IEnumerable<DesenvolvedoraModel>>> Listar()
     {
         if (_context?.Desenvolvedora is null)
             return NotFound();
@@ -28,8 +28,8 @@ public class DesenvolvedoraController : ControllerBase
     }
 
     [HttpGet()]
-    [Route("desenvolvedora/find/{id}")]
-    public async Task<ActionResult<DesenvolvedoraModel>> Find([FromRoute] string id)
+    [Route("buscar/{id}")]
+    public async Task<ActionResult<DesenvolvedoraModel>> Buscar([FromRoute] string id)
     {
         if (_context?.Desenvolvedora is null)
             return NotFound();
@@ -40,8 +40,8 @@ public class DesenvolvedoraController : ControllerBase
     }
 
     [HttpPost]
-    [Route("desenvolvedora/create")]
-    public IActionResult Create(DesenvolvedoraModel desenvolvedora)
+    [Route("inserir")]
+    public IActionResult Inserir(DesenvolvedoraModel desenvolvedora)
     {
         _context?.Add(desenvolvedora);
         _context?.SaveChanges();

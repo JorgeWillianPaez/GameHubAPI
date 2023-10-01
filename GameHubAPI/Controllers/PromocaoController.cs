@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 namespace GameHubAPI.Controllers;
 
 [ApiController]
-[Route("gamehubapi/promocao")]
+[Route("gamehubapi/[controller]")]
 public class PromocaoController : ControllerBase
 {
     private GameHubAPIDbContext? _context;
 
-    public PromocaoController(GameHubAPIDbContext context)
+    public PromocaoController(GameHubAPIDbContext dbContext)
     {
-        _context = context;
+        _context = dbContext;
     }
 
     [HttpGet]
-    [Route("promocao/list")]
-    public async Task<ActionResult<IEnumerable<PromocaoModel>>> List()
+    [Route("list")]
+    public async Task<ActionResult<IEnumerable<PromocaoModel>>> Listar()
     {
         if (_context?.Promocao is null)
             return NotFound();
@@ -28,8 +28,8 @@ public class PromocaoController : ControllerBase
     }
 
     [HttpGet()]
-    [Route("promocao/find/{id}")]
-    public async Task<ActionResult<PromocaoModel>> Find([FromRoute] string id)
+    [Route("find/{id}")]
+    public async Task<ActionResult<PromocaoModel>> Buscar([FromRoute] string id)
     {
         if (_context?.Promocao is null)
             return NotFound();
@@ -40,8 +40,8 @@ public class PromocaoController : ControllerBase
     }
 
     [HttpPost]
-    [Route("promocao/create")]
-    public IActionResult Create(PromocaoModel promocao)
+    [Route("create")]
+    public IActionResult Inserir(PromocaoModel promocao)
     {
         _context?.Add(promocao);
         _context?.SaveChanges();

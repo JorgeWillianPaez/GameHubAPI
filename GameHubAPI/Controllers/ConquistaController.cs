@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 namespace GameHubAPI.Controllers;
 
 [ApiController]
-[Route("gamehubapi/conquista")]
+[Route("gamehubapi/[controller]")]
 public class ConquistaController : ControllerBase
 {
     private GameHubAPIDbContext? _context;
 
-    public ConquistaController(GameHubAPIDbContext context)
+    public ConquistaController(GameHubAPIDbContext dbContext)
     {
-        _context = context;
+        _context = dbContext;
     }
 
     [HttpGet]
-    [Route("conquista/list")]
-    public async Task<ActionResult<IEnumerable<ConquistaModel>>> List()
+    [Route("listar")]
+    public async Task<ActionResult<IEnumerable<ConquistaModel>>> Listar()
     {
         if (_context?.Conquista is null)
             return NotFound();
@@ -28,8 +28,8 @@ public class ConquistaController : ControllerBase
     }
 
     [HttpGet()]
-    [Route("conquista/find/{id}")]
-    public async Task<ActionResult<ConquistaModel>> Find([FromRoute] string id)
+    [Route("buscar/{id}")]
+    public async Task<ActionResult<ConquistaModel>> Buscar([FromRoute] string id)
     {
         if (_context?.Conquista is null)
             return NotFound();
@@ -40,8 +40,8 @@ public class ConquistaController : ControllerBase
     }
 
     [HttpPost]
-    [Route("conquista/create")]
-    public IActionResult Create(ConquistaModel conquista)
+    [Route("inserir")]
+    public IActionResult Inserir(ConquistaModel conquista)
     {
         _context?.Add(conquista);
         _context?.SaveChanges();

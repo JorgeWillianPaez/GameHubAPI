@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 namespace GameHubAPI.Controllers;
 
 [ApiController]
-[Route("gamehubapi/categoria")]
+[Route("gamehubapi/[controller]")]
 public class CategoriaController : ControllerBase
 {
     private GameHubAPIDbContext? _context;
 
-    public CategoriaController(GameHubAPIDbContext context)
+    public CategoriaController(GameHubAPIDbContext dbContext)
     {
-        _context = context;
+        _context = dbContext;
     }
 
     [HttpGet]
-    [Route("categoria/list")]
-    public async Task<ActionResult<IEnumerable<CategoriaModel>>> List()
+    [Route("listar")]
+    public async Task<ActionResult<IEnumerable<CategoriaModel>>> Listar()
     {
         if (_context?.Categoria is null)
             return NotFound();
@@ -28,8 +28,8 @@ public class CategoriaController : ControllerBase
     }
 
     [HttpGet()]
-    [Route("categoria/find/{id}")]
-    public async Task<ActionResult<CategoriaModel>> Find([FromRoute] string id)
+    [Route("buscar/{id}")]
+    public async Task<ActionResult<CategoriaModel>> Buscar([FromRoute] string id)
     {
         if (_context?.Categoria is null)
             return NotFound();
@@ -40,8 +40,8 @@ public class CategoriaController : ControllerBase
     }
 
     [HttpPost]
-    [Route("categoria/create")]
-    public IActionResult Create(CategoriaModel categoria)
+    [Route("inserir")]
+    public IActionResult Inserir(CategoriaModel categoria)
     {
         _context?.Add(categoria);
         _context?.SaveChanges();
