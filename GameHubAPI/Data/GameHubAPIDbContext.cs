@@ -10,6 +10,7 @@ public class GameHubAPIDbContext : DbContext
     public DbSet<ConquistaModel>? Conquista { get; set; }
     public DbSet<DesenvolvedoraModel>? Desenvolvedora { get; set; }
     public DbSet<GameplayConquistaModel>? GameplayConquista { get; set; }
+    public DbSet<GameplayModel>? Gameplay { get; set; }
     public DbSet<ImagemJogoModel>? ImagemJogo { get; set; }
     public DbSet<JogoModel>? Jogo { get; set; }
     public DbSet<NoticiaModel>? Noticia { get; set; }
