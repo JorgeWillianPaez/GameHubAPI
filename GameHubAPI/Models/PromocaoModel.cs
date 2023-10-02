@@ -2,12 +2,12 @@
 {
     public class PromocaoModel
     {
-        public int id;
-        public string nome;
-        public DateTime dataInicio;
-        public DateTime dataFinal;
-        public string status;
-        public CategoriaModel categoria;
+        public int id { get; set; }
+        public string nome { get; set; }
+        public DateTime dataInicio { get; set; }
+        public DateTime dataFinal { get; set; }
+        public string status { get; set; }
+        public CategoriaModel categoria { get; set; }
 
         public PromocaoModel()
         {

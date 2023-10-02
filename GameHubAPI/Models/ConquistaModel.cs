@@ -2,10 +2,10 @@
 {
     public class ConquistaModel
     {
-        public int id;
-        public string nome;
-        public string descricao;
-        public int pontos;
+        public int id { get; set; }
+        public string nome { get; set; }
+        public string descricao { get; set; }
+        public int pontos { get; set; }
 
         public ConquistaModel()
         {
