@@ -2,10 +2,10 @@
 {
     public class DesenvolvedoraModel
     {
-        public int id;
-        public string nome;
-        public string porte;
-        public CategoriaModel categoria;
+        public int id { get; set; }
+        public string nome { get; set; }
+        public string porte { get; set; }
+        public CategoriaModel categoria { get; set; }
 
         public DesenvolvedoraModel()
         {
