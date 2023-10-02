@@ -29,7 +29,7 @@ public class CategoriaController : ControllerBase
 
     [HttpGet()]
     [Route("buscar/{id}")]
-    public async Task<ActionResult<CategoriaModel>> Buscar([FromRoute] string id)
+    public async Task<ActionResult<CategoriaModel>> Buscar([FromRoute] int id)
     {
         if (_context?.Categoria is null)
             return NotFound();
@@ -44,7 +44,7 @@ public class CategoriaController : ControllerBase
     public IActionResult Inserir(CategoriaModel categoria)
     {
         _context?.Add(categoria);
-        _context?.SaveChanges();
+        _context?.SaveChangesAsync();
         return Created("", categoria);
     }
 }

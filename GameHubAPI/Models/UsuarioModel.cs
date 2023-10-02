@@ -1,9 +1,13 @@
-﻿using System.Net.Mail;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Net.Mail;
 
 namespace GameHubAPI.Models
 {
     public class UsuarioModel
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
         public string? nome { get; set; }
         public string? nickName { get; set; }
