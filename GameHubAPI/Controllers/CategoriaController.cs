@@ -41,10 +41,41 @@ public class CategoriaController : ControllerBase
 
     [HttpPost]
     [Route("categoria/create")]
-    public IActionResult Create(CategoriaModel categoria)
+    public async Task<ActionResult> Create(CategoriaModel categoria)
     {
-        _context?.Add(categoria);
-        _context?.SaveChanges();
+        await _context.AddAsync(categoria);
+        await _context.SaveChangesAsync();
         return Created("", categoria);
+    }
+
+    [HttpPut]
+   [Route("categoria/alterar")]
+   public async Task<ActionResult> Alterar(CategoriaModel categoria){
+    _context.Update(categoria);
+    await _context.SaveChangesAsync();
+    return Ok();
+   }
+
+   [HttpPatch]
+   [Route("categoria/mudardescricao/{id}")]
+    public async Task<ActionResult> MudarDescricao(int id, [FromForm] string descricao){
+        var categoriaTemp = await _context.Categoria.FindAsync(id);
+
+        if(categoriaTemp is null) return NotFound();
+        categoriaTemp.descricao = descricao;
+
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
+    [HttpDelete]
+    [Route("categoria/excluir/{id}")]
+    public async Task<ActionResult> Excluir(int id){
+        var categoriaTemp = await _context.Categoria.FindAsync(id);
+
+        if(categoriaTemp is null) return NotFound();
+        _context.Categoria.Remove(categoriaTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
     }
 }

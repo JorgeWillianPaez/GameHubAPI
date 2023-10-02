@@ -41,10 +41,41 @@ public class ConquistaController : ControllerBase
 
     [HttpPost]
     [Route("conquista/create")]
-    public IActionResult Create(ConquistaModel conquista)
+    public async Task<ActionResult> Create(ConquistaModel conquista)
     {
-        _context?.Add(conquista);
-        _context?.SaveChanges();
+        await _context.AddAsync(conquista);
+        await _context.SaveChangesAsync();
         return Created("", conquista);
+    }
+
+     [HttpPut]
+   [Route("conquista/alterar")]
+   public async Task<ActionResult> Alterar(ConquistaModel conquista){
+    _context.Update(conquista);
+    await _context.SaveChangesAsync();
+    return Ok();
+   }
+
+   [HttpPatch]
+   [Route("conquista/mudardescricao/{id}")]
+    public async Task<ActionResult> MudarDescricao(int id, [FromForm] string descricao){
+        var conquistaTemp = await _context.Conquista.FindAsync(id);
+
+        if(conquistaTemp is null) return NotFound();
+        conquistaTemp.descricao = descricao;
+
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
+    [HttpDelete]
+    [Route("conquista/excluir/{id}")]
+    public async Task<ActionResult> Excluir(int id){
+        var conquistaTemp = await _context.Conquista.FindAsync(id);
+
+        if(conquistaTemp is null) return NotFound();
+        _context.Conquista.Remove(conquistaTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
     }
 }

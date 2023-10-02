@@ -23,25 +23,7 @@
             this.categoria = categoria;
         }
 
-        public void InserirDesenvolvedora()
-        {
-        }
-
-        public void Alterar(int id, DesenvolvedoraModel novaDesenvolvedora)
-        {
-        }
-
-        public bool Excluir(int id)
-        {
-        }
-
-        public List<DesenvolvedoraModel> Listar(string idCategoria)
-        {
-        }
-
-        public DesenvolvedoraModel Buscar(int id)
-        {
-        }
+       
     }
 
     

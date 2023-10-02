@@ -41,10 +41,41 @@ public class NoticiaController : ControllerBase
 
     [HttpPost]
     [Route("noticia/create")]
-    public IActionResult Create(NoticiaModel noticia)
+    public async Task<ActionResult> Create(NoticiaModel noticia)
     {
-        _context?.Add(noticia);
-        _context?.SaveChanges();
+        await _context.AddAsync(noticia);
+        await _context.SaveChangesAsync();
         return Created("", noticia);
+    }
+
+     [HttpPut]
+   [Route("noticia/alterar")]
+   public async Task<ActionResult> Alterar(NoticiaModel noticia){
+    _context.Update(noticia);
+    await _context.SaveChangesAsync();
+    return Ok();
+   }
+
+   [HttpPatch]
+   [Route("noticia/mudardescricao/{id}")]
+    public async Task<ActionResult> MudarNome(int id, [FromForm] string descricao){
+        var noticiaTemp = await _context.Noticia.FindAsync(id);
+
+        if(noticiaTemp is null) return NotFound();
+        noticiaTemp.Descricao = descricao;
+
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
+    [HttpDelete]
+    [Route("noticia/excluir/{id}")]
+    public async Task<ActionResult> Excluir(int id){
+        var noticiaTemp = await _context.Noticia.FindAsync(id);
+
+        if(noticiaTemp is null) return NotFound();
+        _context.Noticia.Remove(noticiaTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
     }
 }
