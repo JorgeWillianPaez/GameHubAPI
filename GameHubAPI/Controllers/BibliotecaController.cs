@@ -17,7 +17,7 @@ public class BibliotecaController : ControllerBase
     }
 
     [HttpPost]
-    [Route("inserir")]
+    [Route("")]
     public async Task<ActionResult> Inserir(BibliotecaModel biblioteca)
     {
         await _context.AddAsync(biblioteca);
@@ -26,7 +26,7 @@ public class BibliotecaController : ControllerBase
     }
 
     [HttpPut]
-    [Route("alterar")]
+    [Route("")]
     public async Task<ActionResult> Alterar(BibliotecaModel biblioteca)
     {
         _context.Biblioteca?.FindAsync(biblioteca);
@@ -35,7 +35,7 @@ public class BibliotecaController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("excluir")]
+    [Route("")]
     public async Task<ActionResult> Excluir(int id)
     {
         var biblioteca = _context.Biblioteca!.FindAsync(id);
@@ -46,7 +46,7 @@ public class BibliotecaController : ControllerBase
     }
 
     [HttpGet]
-    [Route("listar")]
+    [Route("")]
     public async Task<ActionResult<IEnumerable<BibliotecaModel>>> Listar()
     {
         if (_context.Biblioteca is null) return NotFound();
@@ -55,7 +55,7 @@ public class BibliotecaController : ControllerBase
 
 
     [HttpGet]
-    [Route("buscar/{id}")]
+    [Route("{id}")]
     public async Task<ActionResult<BibliotecaModel>> Buscar(int id)
     {
         if (_context.Biblioteca is null) return NotFound();

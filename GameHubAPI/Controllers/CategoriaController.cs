@@ -19,7 +19,7 @@ public class CategoriaController : ControllerBase
     }
 
     [HttpGet]
-    [Route("listar")]
+    [Route("")]
     public async Task<ActionResult<IEnumerable<CategoriaModel>>> Listar()
     {
         if (_context?.Categoria is null)
@@ -28,7 +28,7 @@ public class CategoriaController : ControllerBase
     }
 
     [HttpGet()]
-    [Route("buscar/{id}")]
+    [Route("{id}")]
     public async Task<ActionResult<CategoriaModel>> Buscar([FromRoute] int id)
     {
         if (_context?.Categoria is null)
@@ -40,7 +40,7 @@ public class CategoriaController : ControllerBase
     }
 
     [HttpPost]
-    [Route("inserir")]
+    [Route("")]
     public IActionResult Inserir(CategoriaModel categoria)
     {
         _context?.Add(categoria);

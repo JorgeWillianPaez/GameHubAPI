@@ -17,7 +17,7 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPost]
-    [Route("inserir")]
+    [Route("")]
     public async Task<ActionResult> Cadastrar(UsuarioModel usuario)
     {
         await _context.AddAsync(usuario);
@@ -26,7 +26,7 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPut]
-    [Route("alterar")]
+    [Route("")]
     public async Task<ActionResult> Alterar(UsuarioModel usuario)
     {
         _context.Usuario?.FindAsync(usuario);
@@ -35,7 +35,7 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpGet]
-    [Route("listar")]
+    [Route("")]
     public async Task<ActionResult<IEnumerable<UsuarioModel>>> Listar()
     {
         if (_context.Usuario is null) return NotFound();
@@ -43,7 +43,7 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpGet]
-    [Route("buscar/{id}")]
+    [Route("{id}")]
     public async Task<ActionResult<UsuarioModel>> Buscar(int id)
     {
         if (_context.Usuario is null) return NotFound();

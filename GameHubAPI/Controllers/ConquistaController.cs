@@ -19,7 +19,7 @@ public class ConquistaController : ControllerBase
     }
 
     [HttpGet]
-    [Route("listar")]
+    [Route("")]
     public async Task<ActionResult<IEnumerable<ConquistaModel>>> Listar()
     {
         if (_context?.Conquista is null)
@@ -28,8 +28,8 @@ public class ConquistaController : ControllerBase
     }
 
     [HttpGet()]
-    [Route("buscar/{id}")]
-    public async Task<ActionResult<ConquistaModel>> Buscar([FromRoute] string id)
+    [Route("{id}")]
+    public async Task<ActionResult<ConquistaModel>> Buscar([FromRoute] int id)
     {
         if (_context?.Conquista is null)
             return NotFound();
@@ -40,7 +40,7 @@ public class ConquistaController : ControllerBase
     }
 
     [HttpPost]
-    [Route("inserir")]
+    [Route("")]
     public IActionResult Inserir(ConquistaModel conquista)
     {
         _context?.Add(conquista);

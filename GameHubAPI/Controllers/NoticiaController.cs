@@ -19,7 +19,7 @@ public class NoticiaController : ControllerBase
     }
 
     [HttpGet]
-    [Route("listar")]
+    [Route("")]
     public async Task<ActionResult<IEnumerable<NoticiaModel>>> Listar()
     {
         if (_context?.Noticia is null)
@@ -28,8 +28,8 @@ public class NoticiaController : ControllerBase
     }
 
     [HttpGet()]
-    [Route("buscar/{id}")]
-    public async Task<ActionResult<NoticiaModel>> Buscar([FromRoute] string id)
+    [Route("{id}")]
+    public async Task<ActionResult<NoticiaModel>> Buscar([FromRoute] int id)
     {
         if (_context?.Noticia is null)
             return NotFound();
@@ -40,7 +40,7 @@ public class NoticiaController : ControllerBase
     }
 
     [HttpPost]
-    [Route("inserir")]
+    [Route("")]
     public IActionResult Inserir(NoticiaModel noticia)
     {
         _context?.Add(noticia);

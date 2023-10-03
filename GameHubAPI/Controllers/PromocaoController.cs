@@ -19,7 +19,7 @@ public class PromocaoController : ControllerBase
     }
 
     [HttpGet]
-    [Route("list")]
+    [Route("")]
     public async Task<ActionResult<IEnumerable<PromocaoModel>>> Listar()
     {
         if (_context?.Promocao is null)
@@ -28,8 +28,8 @@ public class PromocaoController : ControllerBase
     }
 
     [HttpGet()]
-    [Route("find/{id}")]
-    public async Task<ActionResult<PromocaoModel>> Buscar([FromRoute] string id)
+    [Route("{id}")]
+    public async Task<ActionResult<PromocaoModel>> Buscar([FromRoute] int id)
     {
         if (_context?.Promocao is null)
             return NotFound();
@@ -40,7 +40,7 @@ public class PromocaoController : ControllerBase
     }
 
     [HttpPost]
-    [Route("create")]
+    [Route("")]
     public IActionResult Inserir(PromocaoModel promocao)
     {
         _context?.Add(promocao);

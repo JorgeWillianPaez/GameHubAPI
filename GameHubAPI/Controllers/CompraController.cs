@@ -17,7 +17,7 @@ public class CompraController : ControllerBase
     }
 
     [HttpPost]
-    [Route("inserir")]
+    [Route("")]
     public async Task<ActionResult> Inserir(CompraModel compra)
     {
         await _context.AddAsync(compra);
@@ -26,7 +26,7 @@ public class CompraController : ControllerBase
     }
 
     [HttpGet]
-    [Route("listar")]
+    [Route("")]
     public async Task<ActionResult<IEnumerable<CompraModel>>> Listar()
     {
         if (_context.Compra is null) return NotFound();
@@ -34,7 +34,7 @@ public class CompraController : ControllerBase
     }
 
     [HttpGet]
-    [Route("buscar/{id}")]
+    [Route("{id}")]
     public async Task<ActionResult<CompraModel>> Buscar(int id)
     {
         if (_context.Compra is null) return NotFound();
