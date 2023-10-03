@@ -17,7 +17,7 @@ public class GameplayConquistaController : ControllerBase
     }
 
     [HttpGet]
-    [Route("listar")]
+    [Route("")]
     public async Task<ActionResult<IEnumerable<GameplayConquistaModel>>> Listar()
     {
         if (_context?.GameplayConquista is null) return NotFound();
@@ -25,8 +25,8 @@ public class GameplayConquistaController : ControllerBase
     }
 
     [HttpGet]
-    [Route("buscar/{id}")]
-    public async Task<ActionResult<GameplayConquistaModel>> Buscar([FromRoute] string id)
+    [Route("{id}")]
+    public async Task<ActionResult<GameplayConquistaModel>> Buscar([FromRoute] int id)
     {
         if (_context?.Jogo is null)
             return NotFound();
@@ -37,7 +37,7 @@ public class GameplayConquistaController : ControllerBase
     }
 
     [HttpPost]
-    [Route("inserir")]
+    [Route("")]
     public ActionResult Inserir(JogoModel gameplayConquista)
     {
         _context?.Add(gameplayConquista);

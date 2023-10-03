@@ -17,7 +17,7 @@ public class AmizadeController : ControllerBase
     }
 
     [HttpPost]
-    [Route("inserir")]
+    [Route("")]
     public async Task<ActionResult> Inserir(AmizadeController amizade)
     {
         await _context.AddAsync(amizade);
@@ -26,7 +26,7 @@ public class AmizadeController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("excluir/{id}")]
+    [Route("{id}")]
     public async Task<ActionResult> Excluir(int id)
     {
         var amizade = await _context.Amizade!.FindAsync(id);
@@ -37,7 +37,7 @@ public class AmizadeController : ControllerBase
     }
 
     [HttpGet]
-    [Route("listar")]
+    [Route("")]
     public async Task<ActionResult<IEnumerable<AmizadeModel>>> Listar()
     {
         if (_context.Amizade is null) return NotFound();
@@ -45,7 +45,7 @@ public class AmizadeController : ControllerBase
     }
 
     [HttpGet]
-    [Route("buscar/{id}")]
+    [Route("{id}")]
     public async Task<ActionResult<AmizadeModel>> Buscar(int id)
     {
         if (_context.Amizade is null) return NotFound();

@@ -19,7 +19,7 @@ public class DesenvolvedoraController : ControllerBase
     }
 
     [HttpGet]
-    [Route("listar")]
+    [Route("")]
     public async Task<ActionResult<IEnumerable<DesenvolvedoraModel>>> Listar()
     {
         if (_context?.Desenvolvedora is null)
@@ -28,8 +28,8 @@ public class DesenvolvedoraController : ControllerBase
     }
 
     [HttpGet()]
-    [Route("buscar/{id}")]
-    public async Task<ActionResult<DesenvolvedoraModel>> Buscar([FromRoute] string id)
+    [Route("{id}")]
+    public async Task<ActionResult<DesenvolvedoraModel>> Buscar([FromRoute] int id)
     {
         if (_context?.Desenvolvedora is null)
             return NotFound();
@@ -40,7 +40,7 @@ public class DesenvolvedoraController : ControllerBase
     }
 
     [HttpPost]
-    [Route("inserir")]
+    [Route("")]
     public IActionResult Inserir(DesenvolvedoraModel desenvolvedora)
     {
         _context?.Add(desenvolvedora);

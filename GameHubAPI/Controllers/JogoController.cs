@@ -17,7 +17,7 @@ public class JogoController : ControllerBase
     }
 
     [HttpGet]
-    [Route("listar")]
+    [Route("")]
     public async Task<ActionResult<IEnumerable<JogoModel>>> Listar()
     {
         if (_context?.Jogo is null) return NotFound();
@@ -25,8 +25,8 @@ public class JogoController : ControllerBase
     }
 
     [HttpGet]
-    [Route("buscar/{id}")]
-    public async Task<ActionResult<JogoModel>> Buscar([FromRoute] string id)
+    [Route("{id}")]
+    public async Task<ActionResult<JogoModel>> Buscar([FromRoute] int id)
     {
         if (_context?.Jogo is null)
             return NotFound();
@@ -37,7 +37,7 @@ public class JogoController : ControllerBase
     }
 
     [HttpPost]
-    [Route("inserir")]
+    [Route("")]
     public ActionResult Inserir(JogoModel jogo)
     {
         _context?.Add(jogo);

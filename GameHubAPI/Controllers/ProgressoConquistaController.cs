@@ -18,7 +18,7 @@ public class ProgressoConquistaController : ControllerBase
     }
 
     [HttpGet]
-    [Route("listar")]
+    [Route("")]
     public async Task<ActionResult<IEnumerable<ProgressoConquistaModel>>> Listar()
     {
         if (_context?.ProgressoConquista is null)
@@ -27,8 +27,8 @@ public class ProgressoConquistaController : ControllerBase
     }
 
     [HttpGet()]
-    [Route("buscar/{id}")]
-    public async Task<ActionResult<ProgressoConquistaModel>> Buscar([FromRoute] string id)
+    [Route("{id}")]
+    public async Task<ActionResult<ProgressoConquistaModel>> Buscar([FromRoute] int id)
     {
         if (_context?.ProgressoConquista is null)
             return NotFound();
@@ -39,7 +39,7 @@ public class ProgressoConquistaController : ControllerBase
     }
 
     [HttpPost]
-    [Route("inserir")]
+    [Route("")]
     public IActionResult Inserir(ProgressoConquistaModel progressoConquista)
     {
         _context?.Add(progressoConquista);
