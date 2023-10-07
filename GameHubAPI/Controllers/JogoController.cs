@@ -20,17 +20,17 @@ public class JogoController : ControllerBase
     [Route("")]
     public async Task<ActionResult<IEnumerable<JogoModel>>> Listar()
     {
-        if (_context?.Jogo is null) return NotFound();
-        return await _context.Jogo.ToListAsync();
+        if (_context?.Jogos is null) return NotFound();
+        return await _context.Jogos.ToListAsync();
     }
 
     [HttpGet]
     [Route("{id}")]
     public async Task<ActionResult<JogoModel>> Buscar([FromRoute] int id)
     {
-        if (_context?.Jogo is null)
+        if (_context?.Jogos is null)
             return NotFound();
-        JogoModel? jogo = await _context.Jogo.FindAsync(id);
+        JogoModel? jogo = await _context.Jogos.FindAsync(id);
         if (jogo is null)
             return NotFound();
         return jogo;
