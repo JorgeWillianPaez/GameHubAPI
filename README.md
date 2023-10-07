@@ -30,9 +30,15 @@ O GameHub vai ter uma página principal e de promoções dedicada à venda de jo
 ### Tecnologia:
 O GameHub é uma plataforma de jogos desenvolvida para WEB (Windows, macOS, Linux, iOS e Android). Está sendo desenvolvida utilizando .NET, Angular e banco de dados SQLite.
 
+### Contribuição do CHATGPT:
+O ChatGPT nos auxiliou com diversos bugs e problemas que foram aparecendo no meio do caminho, principalmente quando envolvia o relacionamento entre entidades, além de automatizar a criação de alguns métodos do CRUD.
+
 ### Videos:
 - Gustavo Henrique Lincoln
 link: https://www.youtube.com/watch?v=kt26xcBdTt0&ab_channel=GustavoHenrique
 
 - Lucas Daniel Purkota
 link: https://youtu.be/kC7yGAfSsV8
+
+- Jorge Willian Paez Nagakura
+link: https://www.youtube.com/watch?v=OF6on43W7dI
