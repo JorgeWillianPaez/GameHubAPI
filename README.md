@@ -7,6 +7,8 @@ Integrantes:
 - Tiago Gadonski Cordeiro
 - ChatGPT
 
+Diagrama UML: https://drive.google.com/file/d/12g94GmSmNSeXBOOVR3k0ZJv6UN6jshHQ/view?usp=sharing
+
 ### Título do projeto: 
 GameHub
 
@@ -31,3 +33,6 @@ O GameHub é uma plataforma de jogos desenvolvida para WEB (Windows, macOS, Linu
 ### Videos:
 - Gustavo Henrique Lincoln
 link: https://www.youtube.com/watch?v=kt26xcBdTt0&ab_channel=GustavoHenrique
+
+- Lucas Daniel Purkota
+link: https://youtu.be/kC7yGAfSsV8
