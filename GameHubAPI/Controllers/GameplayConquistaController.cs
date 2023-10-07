@@ -28,7 +28,7 @@ public class GameplayConquistaController : ControllerBase
     [Route("{id}")]
     public async Task<ActionResult<GameplayConquistaModel>> Buscar([FromRoute] int id)
     {
-        if (_context?.Jogo is null)
+        if (_context?.Jogos is null)
             return NotFound();
         GameplayConquistaModel? gameplayConquista = await _context.GameplayConquista!.FindAsync(id);
         if (gameplayConquista is null)

@@ -1,5 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameHubAPI.Models
 {
@@ -7,28 +8,10 @@ namespace GameHubAPI.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
-        public string nome { get; set; }
-        public string porte { get; set; }
-        public CategoriaModel categoria { get; set; }
+        public int Id { get; set; }
+        public required string Nome { get; set; }
+        public required string Porte { get; set; }
 
-        public DesenvolvedoraModel()
-        {
-            id = 0;
-            nome = string.Empty;
-            porte = string.Empty;
-            categoria = null!;
-        }
-
-        public DesenvolvedoraModel(int id, string nome, string porte, CategoriaModel categoria)
-        {
-            this.id = id;
-            this.nome = nome;
-            this.porte = porte;
-            this.categoria = categoria;
-        }
+        public ICollection<JogoModel>? Jogos { get; set; }
     }
-
-    
 }
-

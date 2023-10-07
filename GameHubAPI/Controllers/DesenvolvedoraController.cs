@@ -22,18 +22,18 @@ public class DesenvolvedoraController : ControllerBase
     [Route("")]
     public async Task<ActionResult<IEnumerable<DesenvolvedoraModel>>> Listar()
     {
-        if (_context?.Desenvolvedora is null)
+        if (_context?.Desenvolvedoras is null)
             return NotFound();
-        return await _context.Desenvolvedora.ToListAsync();
+        return await _context.Desenvolvedoras.ToListAsync();
     }
 
     [HttpGet()]
     [Route("{id}")]
     public async Task<ActionResult<DesenvolvedoraModel>> Buscar([FromRoute] int id)
     {
-        if (_context?.Desenvolvedora is null)
+        if (_context?.Desenvolvedoras is null)
             return NotFound();
-        var desenvolvedora = await _context.Desenvolvedora.FindAsync(id);
+        var desenvolvedora = await _context.Desenvolvedoras.FindAsync(id);
         if (desenvolvedora is null)
             return NotFound();
         return desenvolvedora;

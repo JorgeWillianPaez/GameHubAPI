@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using GameHubAPI.Data;
 namespace GameHubAPI
 {
@@ -6,6 +7,8 @@ namespace GameHubAPI
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
