@@ -13,5 +13,7 @@ namespace GameHubAPI.Models
         public double Total { get; set; }
         public string? MetodoPagamento { get; set; }
         public UsuarioModel? Usuario { get; set; }
+
+        public required ICollection<CompraJogo> CompraJogos { get; set; }
     }
 }

@@ -40,6 +40,19 @@ public class GameHubAPIDbContext : DbContext
                 .WithMany(c => c.JogosCategorias)
                 .HasForeignKey(jc => jc.CategoriaId);
 
+            modelBuilder.Entity<CompraJogo>()
+                .HasKey(jc => new { jc.JogoId, jc.CompraId });
+
+            modelBuilder.Entity<CompraJogo>()
+                .HasOne(jc => jc.Jogo)
+                .WithMany(j => j.CompraJogos)
+                .HasForeignKey(jc => jc.JogoId);
+
+            modelBuilder.Entity<CompraJogo>()
+                .HasOne(jc => jc.Compra)
+                .WithMany(c => c.CompraJogos)
+                .HasForeignKey(jc => jc.CompraId);
+
             base.OnModelCreating(modelBuilder);
         }
 }

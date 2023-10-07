@@ -22,5 +22,7 @@ namespace GameHubAPI.Models
         public DesenvolvedoraModel? Desenvolvedora { get; set; }
 
         public required ICollection<JogoCategoria> JogosCategorias { get; set; }
+
+        public ICollection<CompraJogo>? CompraJogos { get; set; }
     }
 }
