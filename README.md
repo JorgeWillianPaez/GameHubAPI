@@ -27,3 +27,7 @@ O GameHub vai ter uma página principal e de promoções dedicada à venda de jo
 
 ### Tecnologia:
 O GameHub é uma plataforma de jogos desenvolvida para WEB (Windows, macOS, Linux, iOS e Android). Está sendo desenvolvida utilizando .NET, Angular e banco de dados SQLite.
+
+### Videos:
+- Gustavo Henrique Lincoln
+link: https://www.youtube.com/watch?v=kt26xcBdTt0&ab_channel=GustavoHenrique
