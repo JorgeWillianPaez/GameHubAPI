@@ -5,6 +5,7 @@ Integrantes:
 - Jorge Willian Paez Nagakura
 - Lucas Daniel Purkota
 - Tiago Gadonski Cordeiro
+- ChatGPT
 
 ### Título do projeto: 
 GameHub
