@@ -41,10 +41,41 @@ public class PromocaoController : ControllerBase
 
     [HttpPost]
     [Route("")]
-    public IActionResult Inserir(PromocaoModel promocao)
+    public async Task<ActionResult> Inserir(PromocaoModel promocao)
     {
-        _context?.Add(promocao);
-        _context?.SaveChanges();
+        await _context.AddAsync(promocao);
+        await _context.SaveChangesAsync();
         return Created("", promocao);
+    }
+
+        [HttpPut]
+   [Route("alterar")]
+   public async Task<ActionResult> Alterar(PromocaoModel promocao){
+    _context.Update(promocao);
+    await _context.SaveChangesAsync();
+    return Ok();
+   }
+
+   [HttpPatch]
+   [Route("mudardescricao/{id}")]
+    public async Task<ActionResult> MudarDescricao(int id, [FromForm] string nome){
+        var nomeTemp = await _context.Promocao.FindAsync(id);
+
+        if(nomeTemp is null) return NotFound();
+        nomeTemp.nome = nome;
+
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
+    [HttpDelete]
+    [Route("excluir/{id}")]
+    public async Task<ActionResult> Excluir(int id){
+        var nomeTemp = await _context.Promocao.FindAsync(id);
+
+        if(nomeTemp is null) return NotFound();
+        _context.Promocao.Remove(nomeTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
     }
 }

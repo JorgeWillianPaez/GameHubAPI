@@ -47,4 +47,35 @@ public class CategoriaController : ControllerBase
         _context?.SaveChangesAsync();
         return Created("", categoria);
     }
+
+        [HttpPut]
+   [Route("alterar")]
+   public async Task<ActionResult> Alterar(CategoriaModel categoria){
+    _context.Update(categoria);
+    await _context.SaveChangesAsync();
+    return Ok();
+   }
+
+   [HttpPatch]
+   [Route("mudardescricao/{id}")]
+    public async Task<ActionResult> MudarDescricao(int id, [FromForm] string nome){
+        var nomeTemp = await _context.Categoria.FindAsync(id);
+
+        if(nomeTemp is null) return NotFound();
+        nomeTemp.Nome = nome;
+
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
+    [HttpDelete]
+    [Route("excluir/{id}")]
+    public async Task<ActionResult> Excluir(int id){
+        var nomeTemp = await _context.Categoria.FindAsync(id);
+
+        if(nomeTemp is null) return NotFound();
+        _context.Categoria.Remove(nomeTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
 }

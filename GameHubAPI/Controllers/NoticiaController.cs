@@ -47,4 +47,35 @@ public class NoticiaController : ControllerBase
         _context?.SaveChanges();
         return Created("", noticia);
     }
+
+        [HttpPut]
+   [Route("alterar")]
+   public async Task<ActionResult> Alterar(NoticiaModel noticia){
+    _context.Update(noticia);
+    await _context.SaveChangesAsync();
+    return Ok();
+   }
+
+   [HttpPatch]
+   [Route("mudartitulo/{id}")]
+    public async Task<ActionResult> MudarTitulo(int id, [FromForm] string nome){
+        var nomeTemp = await _context.Noticia.FindAsync(id);
+
+        if(nomeTemp is null) return NotFound();
+        nomeTemp.Titulo = nome;
+
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
+    [HttpDelete]
+    [Route("excluir/{id}")]
+    public async Task<ActionResult> Excluir(int id){
+        var nomeTemp = await _context.Noticia.FindAsync(id);
+
+        if(nomeTemp is null) return NotFound();
+        _context.Noticia.Remove(nomeTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
 }

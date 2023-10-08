@@ -40,11 +40,42 @@ public class DesenvolvedoraController : ControllerBase
     }
 
     [HttpPost]
-    [Route("")]
+    [Route("inserir")]
     public IActionResult Inserir(DesenvolvedoraModel desenvolvedora)
     {
         _context?.Add(desenvolvedora);
         _context?.SaveChanges();
         return Created("", desenvolvedora);
+    }
+
+    [HttpPut]
+   [Route("alterar")]
+   public async Task<ActionResult> Alterar(DesenvolvedoraModel desenvolvedora){
+    _context.Update(desenvolvedora);
+    await _context.SaveChangesAsync();
+    return Ok();
+   }
+
+   [HttpPatch]
+   [Route("mudarnome/{id}")]
+    public async Task<ActionResult> MudarNome(int id, [FromForm] string nome){
+        var nomeTemp = await _context.Desenvolvedoras.FindAsync(id);
+
+        if(nomeTemp is null) return NotFound();
+        nomeTemp.Nome = nome;
+
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
+    [HttpDelete]
+    [Route("excluir/{id}")]
+    public async Task<ActionResult> Excluir(int id){
+        var nomeTemp = await _context.Desenvolvedoras.FindAsync(id);
+
+        if(nomeTemp is null) return NotFound();
+        _context.Desenvolvedoras.Remove(nomeTemp);
+        await _context.SaveChangesAsync();
+        return Ok();
     }
 }
