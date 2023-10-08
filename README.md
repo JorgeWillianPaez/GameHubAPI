@@ -37,8 +37,11 @@ O ChatGPT nos auxiliou com diversos bugs e problemas que foram aparecendo no mei
 - Gustavo Henrique Lincoln
 link: https://www.youtube.com/watch?v=kt26xcBdTt0&ab_channel=GustavoHenrique
 
+- Jorge Willian Paez Nagakura
+link: https://www.youtube.com/watch?v=OF6on43W7dI
+
 - Lucas Daniel Purkota
 link: https://youtu.be/kC7yGAfSsV8
 
-- Jorge Willian Paez Nagakura
-link: https://www.youtube.com/watch?v=OF6on43W7dI
+- Tiago Gadonski Cordeiro
+link: https://www.youtube.com/watch?v=kB31Lwmq7vc&ab_channel=TiagoGadonski

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameHubAPI.Migrations
 {
     [DbContext(typeof(GameHubAPIDbContext))]
-    [Migration("20231002224650_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20231008213325_CriacaoInicial2")]
+    partial class CriacaoInicial2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,90 +65,102 @@ namespace GameHubAPI.Migrations
 
             modelBuilder.Entity("GameHubAPI.Models.CategoriaModel", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("descricao")
+                    b.Property<string>("Descricao")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("nome")
+                    b.Property<string>("Nome")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Categoria");
                 });
 
+            modelBuilder.Entity("GameHubAPI.Models.CompraJogo", b =>
+                {
+                    b.Property<int>("JogoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CompraId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("JogoId", "CompraId");
+
+                    b.HasIndex("CompraId");
+
+                    b.ToTable("CompraJogo");
+                });
+
             modelBuilder.Entity("GameHubAPI.Models.CompraModel", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("dataCompra")
+                    b.Property<DateTime>("DataCompra")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("metodoPagamento")
+                    b.Property<string>("MetodoPagamento")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("total")
+                    b.Property<double>("Total")
                         .HasColumnType("REAL");
 
-                    b.Property<int?>("usuarioid")
+                    b.Property<int?>("Usuarioid")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("usuarioid");
+                    b.HasIndex("Usuarioid");
 
                     b.ToTable("Compra");
                 });
 
             modelBuilder.Entity("GameHubAPI.Models.ConquistaModel", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("descricao")
+                    b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("nome")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("pontos")
+                    b.Property<int>("Pontos")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Conquista");
                 });
 
             modelBuilder.Entity("GameHubAPI.Models.DesenvolvedoraModel", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("categoriaid")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("nome")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("porte")
+                    b.Property<string>("Porte")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("categoriaid");
-
-                    b.ToTable("Desenvolvedora");
+                    b.ToTable("Desenvolvedoras");
                 });
 
             modelBuilder.Entity("GameHubAPI.Models.GameplayConquistaModel", b =>
@@ -157,7 +169,7 @@ namespace GameHubAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("conquistaid")
+                    b.Property<int?>("conquistaId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("data")
@@ -168,7 +180,7 @@ namespace GameHubAPI.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("conquistaid");
+                    b.HasIndex("conquistaId");
 
                     b.HasIndex("gameplayid");
 
@@ -187,7 +199,7 @@ namespace GameHubAPI.Migrations
                     b.Property<DateTime>("dataInicio")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("jogoid")
+                    b.Property<int?>("jogoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("usuarioid")
@@ -195,7 +207,7 @@ namespace GameHubAPI.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("jogoid");
+                    b.HasIndex("jogoId");
 
                     b.HasIndex("usuarioid");
 
@@ -205,44 +217,62 @@ namespace GameHubAPI.Migrations
             modelBuilder.Entity("GameHubAPI.Models.ImagemJogoModel", b =>
                 {
                     b.Property<string>("id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("jogoid")
+                    b.Property<int?>("jogoId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("id");
 
-                    b.HasIndex("jogoid");
+                    b.HasIndex("jogoId");
 
                     b.ToTable("ImagemJogo");
                 });
 
+            modelBuilder.Entity("GameHubAPI.Models.JogoCategoria", b =>
+                {
+                    b.Property<int>("JogoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("JogoId", "CategoriaId");
+
+                    b.HasIndex("CategoriaId");
+
+                    b.ToTable("JogosCategorias");
+                });
+
             modelBuilder.Entity("GameHubAPI.Models.JogoModel", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateOnly>("dataLancamento")
+                    b.Property<DateTime>("DataLancamento")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("descricao")
+                    b.Property<string>("Descricao")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("desenvolvedoraid")
+                    b.Property<int>("DesenvolvedoraId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("nome")
+                    b.Property<string>("Nome")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("preco")
+                    b.Property<double>("Preco")
                         .HasColumnType("REAL");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("desenvolvedoraid");
+                    b.HasIndex("DesenvolvedoraId");
 
-                    b.ToTable("Jogo");
+                    b.ToTable("Jogos");
                 });
 
             modelBuilder.Entity("GameHubAPI.Models.NoticiaModel", b =>
@@ -251,7 +281,7 @@ namespace GameHubAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("Categoriaid")
+                    b.Property<int?>("CategoriaId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DataPublicacao")
@@ -268,7 +298,7 @@ namespace GameHubAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Categoriaid");
+                    b.HasIndex("CategoriaId");
 
                     b.HasIndex("Usuarioid");
 
@@ -281,7 +311,7 @@ namespace GameHubAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("conquistaid")
+                    b.Property<int?>("conquistaId")
                         .HasColumnType("INTEGER");
 
                     b.Property<double>("progresso")
@@ -292,7 +322,7 @@ namespace GameHubAPI.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("conquistaid");
+                    b.HasIndex("conquistaId");
 
                     b.HasIndex("usuarioid");
 
@@ -305,7 +335,7 @@ namespace GameHubAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("categoriaid")
+                    b.Property<int>("categoriaId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("dataFinal")
@@ -324,7 +354,7 @@ namespace GameHubAPI.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("categoriaid");
+                    b.HasIndex("categoriaId");
 
                     b.ToTable("Promocao");
                 });
@@ -385,31 +415,39 @@ namespace GameHubAPI.Migrations
                     b.Navigation("usuario");
                 });
 
-            modelBuilder.Entity("GameHubAPI.Models.CompraModel", b =>
+            modelBuilder.Entity("GameHubAPI.Models.CompraJogo", b =>
                 {
-                    b.HasOne("GameHubAPI.Models.UsuarioModel", "usuario")
-                        .WithMany()
-                        .HasForeignKey("usuarioid");
-
-                    b.Navigation("usuario");
-                });
-
-            modelBuilder.Entity("GameHubAPI.Models.DesenvolvedoraModel", b =>
-                {
-                    b.HasOne("GameHubAPI.Models.CategoriaModel", "categoria")
-                        .WithMany()
-                        .HasForeignKey("categoriaid")
+                    b.HasOne("GameHubAPI.Models.CompraModel", "Compra")
+                        .WithMany("CompraJogos")
+                        .HasForeignKey("CompraId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("categoria");
+                    b.HasOne("GameHubAPI.Models.JogoModel", "Jogo")
+                        .WithMany("CompraJogos")
+                        .HasForeignKey("JogoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Compra");
+
+                    b.Navigation("Jogo");
+                });
+
+            modelBuilder.Entity("GameHubAPI.Models.CompraModel", b =>
+                {
+                    b.HasOne("GameHubAPI.Models.UsuarioModel", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("Usuarioid");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("GameHubAPI.Models.GameplayConquistaModel", b =>
                 {
                     b.HasOne("GameHubAPI.Models.ConquistaModel", "conquista")
                         .WithMany()
-                        .HasForeignKey("conquistaid");
+                        .HasForeignKey("conquistaId");
 
                     b.HasOne("GameHubAPI.Models.GameplayModel", "gameplay")
                         .WithMany()
@@ -424,7 +462,7 @@ namespace GameHubAPI.Migrations
                 {
                     b.HasOne("GameHubAPI.Models.JogoModel", "jogo")
                         .WithMany()
-                        .HasForeignKey("jogoid");
+                        .HasForeignKey("jogoId");
 
                     b.HasOne("GameHubAPI.Models.UsuarioModel", "usuario")
                         .WithMany()
@@ -439,25 +477,46 @@ namespace GameHubAPI.Migrations
                 {
                     b.HasOne("GameHubAPI.Models.JogoModel", "jogo")
                         .WithMany()
-                        .HasForeignKey("jogoid");
+                        .HasForeignKey("jogoId");
 
                     b.Navigation("jogo");
                 });
 
+            modelBuilder.Entity("GameHubAPI.Models.JogoCategoria", b =>
+                {
+                    b.HasOne("GameHubAPI.Models.CategoriaModel", "Categoria")
+                        .WithMany("JogosCategorias")
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GameHubAPI.Models.JogoModel", "Jogo")
+                        .WithMany("JogosCategorias")
+                        .HasForeignKey("JogoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
+
+                    b.Navigation("Jogo");
+                });
+
             modelBuilder.Entity("GameHubAPI.Models.JogoModel", b =>
                 {
-                    b.HasOne("GameHubAPI.Models.DesenvolvedoraModel", "desenvolvedora")
-                        .WithMany()
-                        .HasForeignKey("desenvolvedoraid");
+                    b.HasOne("GameHubAPI.Models.DesenvolvedoraModel", "Desenvolvedora")
+                        .WithMany("Jogos")
+                        .HasForeignKey("DesenvolvedoraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("desenvolvedora");
+                    b.Navigation("Desenvolvedora");
                 });
 
             modelBuilder.Entity("GameHubAPI.Models.NoticiaModel", b =>
                 {
                     b.HasOne("GameHubAPI.Models.CategoriaModel", "Categoria")
                         .WithMany()
-                        .HasForeignKey("Categoriaid");
+                        .HasForeignKey("CategoriaId");
 
                     b.HasOne("GameHubAPI.Models.UsuarioModel", "Usuario")
                         .WithMany()
@@ -472,7 +531,7 @@ namespace GameHubAPI.Migrations
                 {
                     b.HasOne("GameHubAPI.Models.ConquistaModel", "conquista")
                         .WithMany()
-                        .HasForeignKey("conquistaid");
+                        .HasForeignKey("conquistaId");
 
                     b.HasOne("GameHubAPI.Models.UsuarioModel", "usuario")
                         .WithMany()
@@ -487,11 +546,33 @@ namespace GameHubAPI.Migrations
                 {
                     b.HasOne("GameHubAPI.Models.CategoriaModel", "categoria")
                         .WithMany()
-                        .HasForeignKey("categoriaid")
+                        .HasForeignKey("categoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("categoria");
+                });
+
+            modelBuilder.Entity("GameHubAPI.Models.CategoriaModel", b =>
+                {
+                    b.Navigation("JogosCategorias");
+                });
+
+            modelBuilder.Entity("GameHubAPI.Models.CompraModel", b =>
+                {
+                    b.Navigation("CompraJogos");
+                });
+
+            modelBuilder.Entity("GameHubAPI.Models.DesenvolvedoraModel", b =>
+                {
+                    b.Navigation("Jogos");
+                });
+
+            modelBuilder.Entity("GameHubAPI.Models.JogoModel", b =>
+                {
+                    b.Navigation("CompraJogos");
+
+                    b.Navigation("JogosCategorias");
                 });
 #pragma warning restore 612, 618
         }

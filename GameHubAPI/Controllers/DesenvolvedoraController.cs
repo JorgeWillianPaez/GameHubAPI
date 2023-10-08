@@ -41,10 +41,10 @@ public class DesenvolvedoraController : ControllerBase
 
     [HttpPost]
     [Route("inserir")]
-    public IActionResult Inserir(DesenvolvedoraModel desenvolvedora)
+    public async Task<ActionResult> Inserir(DesenvolvedoraModel desenvolvedora)
     {
-        _context?.Add(desenvolvedora);
-        _context?.SaveChanges();
+        await _context.AddAsync(desenvolvedora);
+        await _context.SaveChangesAsync();
         return Created("", desenvolvedora);
     }
 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GameHubAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class CriacaoInicial2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,29 +15,43 @@ namespace GameHubAPI.Migrations
                 name: "Categoria",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    nome = table.Column<string>(type: "TEXT", nullable: true),
-                    descricao = table.Column<string>(type: "TEXT", nullable: true)
+                    Nome = table.Column<string>(type: "TEXT", nullable: false),
+                    Descricao = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categoria", x => x.id);
+                    table.PrimaryKey("PK_Categoria", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Conquista",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    nome = table.Column<string>(type: "TEXT", nullable: false),
-                    descricao = table.Column<string>(type: "TEXT", nullable: false),
-                    pontos = table.Column<int>(type: "INTEGER", nullable: false)
+                    Nome = table.Column<string>(type: "TEXT", nullable: false),
+                    Descricao = table.Column<string>(type: "TEXT", nullable: false),
+                    Pontos = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Conquista", x => x.id);
+                    table.PrimaryKey("PK_Conquista", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Desenvolvedoras",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nome = table.Column<string>(type: "TEXT", nullable: false),
+                    Porte = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Desenvolvedoras", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -60,27 +74,6 @@ namespace GameHubAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Desenvolvedora",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    nome = table.Column<string>(type: "TEXT", nullable: false),
-                    porte = table.Column<string>(type: "TEXT", nullable: false),
-                    categoriaid = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Desenvolvedora", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Desenvolvedora_Categoria_categoriaid",
-                        column: x => x.categoriaid,
-                        principalTable: "Categoria",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Promocao",
                 columns: table => new
                 {
@@ -90,16 +83,39 @@ namespace GameHubAPI.Migrations
                     dataInicio = table.Column<DateTime>(type: "TEXT", nullable: false),
                     dataFinal = table.Column<DateTime>(type: "TEXT", nullable: false),
                     status = table.Column<string>(type: "TEXT", nullable: false),
-                    categoriaid = table.Column<int>(type: "INTEGER", nullable: false)
+                    categoriaId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Promocao", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Promocao_Categoria_categoriaid",
-                        column: x => x.categoriaid,
+                        name: "FK_Promocao_Categoria_categoriaId",
+                        column: x => x.categoriaId,
                         principalTable: "Categoria",
-                        principalColumn: "id",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Jogos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nome = table.Column<string>(type: "TEXT", nullable: false),
+                    Descricao = table.Column<string>(type: "TEXT", nullable: false),
+                    Preco = table.Column<double>(type: "REAL", nullable: false),
+                    DataLancamento = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    DesenvolvedoraId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Jogos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Jogos_Desenvolvedoras_DesenvolvedoraId",
+                        column: x => x.DesenvolvedoraId,
+                        principalTable: "Desenvolvedoras",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -151,19 +167,19 @@ namespace GameHubAPI.Migrations
                 name: "Compra",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    dataCompra = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    total = table.Column<double>(type: "REAL", nullable: false),
-                    metodoPagamento = table.Column<string>(type: "TEXT", nullable: true),
-                    usuarioid = table.Column<int>(type: "INTEGER", nullable: true)
+                    DataCompra = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Total = table.Column<double>(type: "REAL", nullable: false),
+                    MetodoPagamento = table.Column<string>(type: "TEXT", nullable: true),
+                    Usuarioid = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Compra", x => x.id);
+                    table.PrimaryKey("PK_Compra", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Compra_Usuario_usuarioid",
-                        column: x => x.usuarioid,
+                        name: "FK_Compra_Usuario_Usuarioid",
+                        column: x => x.Usuarioid,
                         principalTable: "Usuario",
                         principalColumn: "id");
                 });
@@ -178,16 +194,16 @@ namespace GameHubAPI.Migrations
                     Descricao = table.Column<string>(type: "TEXT", nullable: true),
                     DataPublicacao = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Usuarioid = table.Column<int>(type: "INTEGER", nullable: true),
-                    Categoriaid = table.Column<int>(type: "INTEGER", nullable: true)
+                    CategoriaId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Noticia", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Noticia_Categoria_Categoriaid",
-                        column: x => x.Categoriaid,
+                        name: "FK_Noticia_Categoria_CategoriaId",
+                        column: x => x.CategoriaId,
                         principalTable: "Categoria",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Noticia_Usuario_Usuarioid",
                         column: x => x.Usuarioid,
@@ -202,43 +218,21 @@ namespace GameHubAPI.Migrations
                     id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     progresso = table.Column<double>(type: "REAL", nullable: false),
-                    conquistaid = table.Column<int>(type: "INTEGER", nullable: true),
+                    conquistaId = table.Column<int>(type: "INTEGER", nullable: true),
                     usuarioid = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProgressoConquista", x => x.id);
                     table.ForeignKey(
-                        name: "FK_ProgressoConquista_Conquista_conquistaid",
-                        column: x => x.conquistaid,
+                        name: "FK_ProgressoConquista_Conquista_conquistaId",
+                        column: x => x.conquistaId,
                         principalTable: "Conquista",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ProgressoConquista_Usuario_usuarioid",
                         column: x => x.usuarioid,
                         principalTable: "Usuario",
-                        principalColumn: "id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Jogo",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    nome = table.Column<string>(type: "TEXT", nullable: true),
-                    descricao = table.Column<string>(type: "TEXT", nullable: true),
-                    preco = table.Column<double>(type: "REAL", nullable: false),
-                    dataLancamento = table.Column<DateOnly>(type: "TEXT", nullable: false),
-                    desenvolvedoraid = table.Column<int>(type: "INTEGER", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Jogo", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Jogo_Desenvolvedora_desenvolvedoraid",
-                        column: x => x.desenvolvedoraid,
-                        principalTable: "Desenvolvedora",
                         principalColumn: "id");
                 });
 
@@ -250,17 +244,17 @@ namespace GameHubAPI.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     dataInicio = table.Column<DateTime>(type: "TEXT", nullable: false),
                     dataFim = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    jogoid = table.Column<int>(type: "INTEGER", nullable: true),
+                    jogoId = table.Column<int>(type: "INTEGER", nullable: true),
                     usuarioid = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Gameplay", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Gameplay_Jogo_jogoid",
-                        column: x => x.jogoid,
-                        principalTable: "Jogo",
-                        principalColumn: "id");
+                        name: "FK_Gameplay_Jogos_jogoId",
+                        column: x => x.jogoId,
+                        principalTable: "Jogos",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Gameplay_Usuario_usuarioid",
                         column: x => x.usuarioid,
@@ -273,16 +267,64 @@ namespace GameHubAPI.Migrations
                 columns: table => new
                 {
                     id = table.Column<string>(type: "TEXT", nullable: false),
-                    jogoid = table.Column<int>(type: "INTEGER", nullable: true)
+                    jogoId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ImagemJogo", x => x.id);
                     table.ForeignKey(
-                        name: "FK_ImagemJogo_Jogo_jogoid",
-                        column: x => x.jogoid,
-                        principalTable: "Jogo",
-                        principalColumn: "id");
+                        name: "FK_ImagemJogo_Jogos_jogoId",
+                        column: x => x.jogoId,
+                        principalTable: "Jogos",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "JogosCategorias",
+                columns: table => new
+                {
+                    JogoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CategoriaId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JogosCategorias", x => new { x.JogoId, x.CategoriaId });
+                    table.ForeignKey(
+                        name: "FK_JogosCategorias_Categoria_CategoriaId",
+                        column: x => x.CategoriaId,
+                        principalTable: "Categoria",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_JogosCategorias_Jogos_JogoId",
+                        column: x => x.JogoId,
+                        principalTable: "Jogos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompraJogo",
+                columns: table => new
+                {
+                    JogoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CompraId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompraJogo", x => new { x.JogoId, x.CompraId });
+                    table.ForeignKey(
+                        name: "FK_CompraJogo_Compra_CompraId",
+                        column: x => x.CompraId,
+                        principalTable: "Compra",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CompraJogo_Jogos_JogoId",
+                        column: x => x.JogoId,
+                        principalTable: "Jogos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -292,17 +334,17 @@ namespace GameHubAPI.Migrations
                     id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     data = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    conquistaid = table.Column<int>(type: "INTEGER", nullable: true),
+                    conquistaId = table.Column<int>(type: "INTEGER", nullable: true),
                     gameplayid = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_GameplayConquista", x => x.id);
                     table.ForeignKey(
-                        name: "FK_GameplayConquista_Conquista_conquistaid",
-                        column: x => x.conquistaid,
+                        name: "FK_GameplayConquista_Conquista_conquistaId",
+                        column: x => x.conquistaId,
                         principalTable: "Conquista",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_GameplayConquista_Gameplay_gameplayid",
                         column: x => x.gameplayid,
@@ -326,19 +368,19 @@ namespace GameHubAPI.Migrations
                 column: "usuarioid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Compra_usuarioid",
+                name: "IX_Compra_Usuarioid",
                 table: "Compra",
-                column: "usuarioid");
+                column: "Usuarioid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Desenvolvedora_categoriaid",
-                table: "Desenvolvedora",
-                column: "categoriaid");
+                name: "IX_CompraJogo_CompraId",
+                table: "CompraJogo",
+                column: "CompraId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Gameplay_jogoid",
+                name: "IX_Gameplay_jogoId",
                 table: "Gameplay",
-                column: "jogoid");
+                column: "jogoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Gameplay_usuarioid",
@@ -346,9 +388,9 @@ namespace GameHubAPI.Migrations
                 column: "usuarioid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GameplayConquista_conquistaid",
+                name: "IX_GameplayConquista_conquistaId",
                 table: "GameplayConquista",
-                column: "conquistaid");
+                column: "conquistaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_GameplayConquista_gameplayid",
@@ -356,19 +398,24 @@ namespace GameHubAPI.Migrations
                 column: "gameplayid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ImagemJogo_jogoid",
+                name: "IX_ImagemJogo_jogoId",
                 table: "ImagemJogo",
-                column: "jogoid");
+                column: "jogoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Jogo_desenvolvedoraid",
-                table: "Jogo",
-                column: "desenvolvedoraid");
+                name: "IX_Jogos_DesenvolvedoraId",
+                table: "Jogos",
+                column: "DesenvolvedoraId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Noticia_Categoriaid",
+                name: "IX_JogosCategorias_CategoriaId",
+                table: "JogosCategorias",
+                column: "CategoriaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Noticia_CategoriaId",
                 table: "Noticia",
-                column: "Categoriaid");
+                column: "CategoriaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Noticia_Usuarioid",
@@ -376,9 +423,9 @@ namespace GameHubAPI.Migrations
                 column: "Usuarioid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProgressoConquista_conquistaid",
+                name: "IX_ProgressoConquista_conquistaId",
                 table: "ProgressoConquista",
-                column: "conquistaid");
+                column: "conquistaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProgressoConquista_usuarioid",
@@ -386,9 +433,9 @@ namespace GameHubAPI.Migrations
                 column: "usuarioid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Promocao_categoriaid",
+                name: "IX_Promocao_categoriaId",
                 table: "Promocao",
-                column: "categoriaid");
+                column: "categoriaId");
         }
 
         /// <inheritdoc />
@@ -401,13 +448,16 @@ namespace GameHubAPI.Migrations
                 name: "Biblioteca");
 
             migrationBuilder.DropTable(
-                name: "Compra");
+                name: "CompraJogo");
 
             migrationBuilder.DropTable(
                 name: "GameplayConquista");
 
             migrationBuilder.DropTable(
                 name: "ImagemJogo");
+
+            migrationBuilder.DropTable(
+                name: "JogosCategorias");
 
             migrationBuilder.DropTable(
                 name: "Noticia");
@@ -419,22 +469,25 @@ namespace GameHubAPI.Migrations
                 name: "Promocao");
 
             migrationBuilder.DropTable(
+                name: "Compra");
+
+            migrationBuilder.DropTable(
                 name: "Gameplay");
 
             migrationBuilder.DropTable(
                 name: "Conquista");
 
             migrationBuilder.DropTable(
-                name: "Jogo");
+                name: "Categoria");
+
+            migrationBuilder.DropTable(
+                name: "Jogos");
 
             migrationBuilder.DropTable(
                 name: "Usuario");
 
             migrationBuilder.DropTable(
-                name: "Desenvolvedora");
-
-            migrationBuilder.DropTable(
-                name: "Categoria");
+                name: "Desenvolvedoras");
         }
     }
 }

@@ -41,10 +41,10 @@ public class NoticiaController : ControllerBase
 
     [HttpPost]
     [Route("")]
-    public IActionResult Inserir(NoticiaModel noticia)
+    public async Task<ActionResult> Inserir(NoticiaModel noticia)
     {
-        _context?.Add(noticia);
-        _context?.SaveChanges();
+        await _context.AddAsync(noticia);
+        await _context.SaveChangesAsync();
         return Created("", noticia);
     }
 

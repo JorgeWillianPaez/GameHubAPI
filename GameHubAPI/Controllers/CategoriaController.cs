@@ -41,10 +41,10 @@ public class CategoriaController : ControllerBase
 
     [HttpPost]
     [Route("")]
-    public IActionResult Inserir(CategoriaModel categoria)
+    public async Task<ActionResult> Inserir(CategoriaModel categoria)
     {
-        _context?.Add(categoria);
-        _context?.SaveChangesAsync();
+       await _context.AddAsync(categoria);
+       await _context.SaveChangesAsync();
         return Created("", categoria);
     }
 
