@@ -22,7 +22,7 @@ public class GameHubAPIDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite("DataSource=gamehub.db;Cache=Shared;");
+        optionsBuilder.UseMySQL("server=localhost;database=database_name;user=username;password=password");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
