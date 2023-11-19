@@ -1,5 +1,7 @@
 using System.Text.Json.Serialization;
 using GameHubAPI.Data;
+using Microsoft.AspNetCore.Builder;
+
 namespace GameHubAPI
 {
     public class Program
@@ -14,21 +16,19 @@ namespace GameHubAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<GameHubAPIDbContext>();
-
+            builder.Services.AddCors();
             var app = builder.Build();
-
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
             app.UseHttpsRedirection();
-
+            app.UseCors(opcoes => opcoes
+                .WithOrigins("http://localhost:4200")
+                .AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             app.UseAuthorization();
-
             app.MapControllers();
-
             app.Run();
         }
     }
