@@ -22,7 +22,7 @@ public class GameHubAPIDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseMySQL("server=localhost;database=database_name;user=username;password=password");
+        optionsBuilder.UseMySQL("server=localhost;database=gamehub;user=root;password=password");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
