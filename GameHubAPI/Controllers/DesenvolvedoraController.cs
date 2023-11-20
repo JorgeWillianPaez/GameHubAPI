@@ -40,7 +40,7 @@ public class DesenvolvedoraController : ControllerBase
     }
 
     [HttpPost]
-    [Route("inserir")]
+    [Route("")]
     public async Task<ActionResult> Inserir(DesenvolvedoraModel desenvolvedora)
     {
         await _context.AddAsync(desenvolvedora);
@@ -49,7 +49,7 @@ public class DesenvolvedoraController : ControllerBase
     }
 
     [HttpPut]
-   [Route("alterar")]
+   [Route("")]
    public async Task<ActionResult> Alterar(DesenvolvedoraModel desenvolvedora){
     _context.Update(desenvolvedora);
     await _context.SaveChangesAsync();
@@ -69,7 +69,7 @@ public class DesenvolvedoraController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("excluir/{id}")]
+    [Route("{id}")]
     public async Task<ActionResult> Excluir(int id){
         var nomeTemp = await _context.Desenvolvedoras.FindAsync(id);
 
