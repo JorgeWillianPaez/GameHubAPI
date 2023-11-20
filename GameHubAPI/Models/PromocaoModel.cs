@@ -12,6 +12,7 @@ namespace GameHubAPI.Models
         public DateTime dataInicio { get; set; }
         public DateTime dataFinal { get; set; }
         public string status { get; set; }
+        public int categoriaId { get; set; }
         public CategoriaModel categoria { get; set; }
     }
 }

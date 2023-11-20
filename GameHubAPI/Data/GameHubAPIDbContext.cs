@@ -25,34 +25,34 @@ public class GameHubAPIDbContext : DbContext
         optionsBuilder.UseMySQL("server=localhost;database=gamehub;user=root;password=password");
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<JogoCategoria>()
-                .HasKey(jc => new { jc.JogoId, jc.CategoriaId });
+    //protected override void OnModelCreating(ModelBuilder modelBuilder)
+    //    {
+    //        modelBuilder.Entity<JogoCategoria>()
+    //            .HasKey(jc => new { jc.JogoId, jc.CategoriaId });
 
-            modelBuilder.Entity<JogoCategoria>()
-                .HasOne(jc => jc.Jogo)
-                .WithMany(j => j.JogosCategorias)
-                .HasForeignKey(jc => jc.JogoId);
+    //        modelBuilder.Entity<JogoCategoria>()
+    //            .HasOne(jc => jc.Jogo)
+    //            .WithMany(j => j.JogosCategorias)
+    //            .HasForeignKey(jc => jc.JogoId);
 
-            modelBuilder.Entity<JogoCategoria>()
-                .HasOne(jc => jc.Categoria)
-                .WithMany(c => c.JogosCategorias)
-                .HasForeignKey(jc => jc.CategoriaId);
+    //        modelBuilder.Entity<JogoCategoria>()
+    //            .HasOne(jc => jc.Categoria)
+    //            .WithMany(c => c.JogosCategorias)
+    //            .HasForeignKey(jc => jc.CategoriaId);
 
-            modelBuilder.Entity<CompraJogo>()
-                .HasKey(jc => new { jc.JogoId, jc.CompraId });
+    //        modelBuilder.Entity<CompraJogo>()
+    //            .HasKey(jc => new { jc.JogoId, jc.CompraId });
 
-            modelBuilder.Entity<CompraJogo>()
-                .HasOne(jc => jc.Jogo)
-                .WithMany(j => j.CompraJogos)
-                .HasForeignKey(jc => jc.JogoId);
+    //        modelBuilder.Entity<CompraJogo>()
+    //            .HasOne(jc => jc.Jogo)
+    //            .WithMany(j => j.CompraJogos)
+    //            .HasForeignKey(jc => jc.JogoId);
 
-            modelBuilder.Entity<CompraJogo>()
-                .HasOne(jc => jc.Compra)
-                .WithMany(c => c.CompraJogos)
-                .HasForeignKey(jc => jc.CompraId);
+    //        modelBuilder.Entity<CompraJogo>()
+    //            .HasOne(jc => jc.Compra)
+    //            .WithMany(c => c.CompraJogos)
+    //            .HasForeignKey(jc => jc.CompraId);
 
-            base.OnModelCreating(modelBuilder);
-        }
+    //        base.OnModelCreating(modelBuilder);
+    //    }
 }

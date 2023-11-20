@@ -8,10 +8,12 @@ namespace GameHubAPI.Models;
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string? Titulo { get; set; }
-        public string? Descricao { get; set; }
-        public DateTime DataPublicacao { get; set; }
-        public UsuarioModel? Usuario { get; set; }
-        public CategoriaModel? Categoria { get; set; }
+        public int id { get; set; }
+        public string? titulo { get; set; }
+        public string? descricao { get; set; }
+        public DateTime dataPublicacao { get; set; }
+        public int? UsuarioId { get; set; }
+        public UsuarioModel? usuario { get; set; }
+        public int? categoriaId { get; set; }
+        public CategoriaModel? categoria { get; set; }
     }

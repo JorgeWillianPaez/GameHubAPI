@@ -43,6 +43,16 @@ public class DesenvolvedoraController : ControllerBase
     [Route("")]
     public async Task<ActionResult> Inserir(DesenvolvedoraModel desenvolvedora)
     {
+        if (_context.Desenvolvedoras is null) return NotFound();
+        var desenvolvedoras = await _context.Desenvolvedoras.ToListAsync();
+
+        DesenvolvedoraModel dev = desenvolvedoras.Find(item => item.nome == desenvolvedora.nome);
+
+        if (dev is not null)
+        {
+            return Conflict();
+        }
+
         await _context.AddAsync(desenvolvedora);
         await _context.SaveChangesAsync();
         return Created("", desenvolvedora);
@@ -62,7 +72,7 @@ public class DesenvolvedoraController : ControllerBase
         var nomeTemp = await _context.Desenvolvedoras.FindAsync(id);
 
         if(nomeTemp is null) return NotFound();
-        nomeTemp.Nome = nome;
+        nomeTemp.nome = nome;
 
         await _context.SaveChangesAsync();
         return Ok();

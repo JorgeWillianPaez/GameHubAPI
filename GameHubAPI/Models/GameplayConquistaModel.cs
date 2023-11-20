@@ -9,7 +9,9 @@ namespace GameHubAPI.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
         public DateTime data { get; set; }
+        public int? conquistaId { get; set; }
         public ConquistaModel? conquista { get; set; }
+        public int? gameplayId { get; set; }
         public GameplayModel? gameplay { get; set; }
     }
 }

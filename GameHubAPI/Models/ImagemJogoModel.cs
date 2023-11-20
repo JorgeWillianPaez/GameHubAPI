@@ -8,6 +8,7 @@ namespace GameHubAPI.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string id { get; set; }
+        public int? jogoId { get; set; }
         public JogoModel? jogo { get; set; }
     }
 }

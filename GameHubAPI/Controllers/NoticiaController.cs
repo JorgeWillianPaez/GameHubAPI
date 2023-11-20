@@ -49,7 +49,7 @@ public class NoticiaController : ControllerBase
     }
 
         [HttpPut]
-   [Route("alterar")]
+   [Route("")]
    public async Task<ActionResult> Alterar(NoticiaModel noticia){
     _context.Update(noticia);
     await _context.SaveChangesAsync();
@@ -62,14 +62,14 @@ public class NoticiaController : ControllerBase
         var nomeTemp = await _context.Noticia.FindAsync(id);
 
         if(nomeTemp is null) return NotFound();
-        nomeTemp.Titulo = nome;
+        nomeTemp.titulo = nome;
 
         await _context.SaveChangesAsync();
         return Ok();
     }
 
     [HttpDelete]
-    [Route("excluir/{id}")]
+    [Route("{id}")]
     public async Task<ActionResult> Excluir(int id){
         var nomeTemp = await _context.Noticia.FindAsync(id);
 

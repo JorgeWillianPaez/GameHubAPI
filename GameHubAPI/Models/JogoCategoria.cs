@@ -1,11 +1,16 @@
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
 namespace GameHubAPI.Models
 {
     public class JogoCategoria
     {
-        public int JogoId { get; set; }
-        public JogoModel? Jogo { get; set; }
-
-        public int CategoriaId { get; set; }
-        public CategoriaModel? Categoria { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
+        public int jogoId { get; set; }
+        public JogoModel? jogo { get; set; }
+        public int categoriaId { get; set; }
+        public CategoriaModel? categoria { get; set; }
     }
 }

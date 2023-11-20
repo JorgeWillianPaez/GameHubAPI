@@ -11,5 +11,6 @@ namespace GameHubAPI.Models
         public string? nome { get; set; }
         public string? descricao { get; set; }
         public UsuarioModel? usuario { get; set; }
+        public int? usuarioId { get; set; }
     }
 }

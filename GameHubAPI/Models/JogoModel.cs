@@ -11,18 +11,18 @@ namespace GameHubAPI.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public required string Nome { get; set; }
-        public required string Descricao { get; set; }
-        public double Preco { get; set; }
-        public DateTime DataLancamento { get; set; }
+        public int id { get; set; }
+        public required string nome { get; set; }
+        public required string descricao { get; set; }
+        public double preco { get; set; }
+        public DateTime dataLancamento { get; set; }
 
-        public int DesenvolvedoraId { get; set; }
+        public int desenvolvedoraId { get; set; }
 
-        public DesenvolvedoraModel? Desenvolvedora { get; set; }
+        public DesenvolvedoraModel? desenvolvedora { get; set; }
 
-        public required ICollection<JogoCategoria> JogosCategorias { get; set; }
+        public required ICollection<JogoCategoria> jogosCategorias { get; set; }
 
-        public ICollection<CompraJogo>? CompraJogos { get; set; }
+        public ICollection<CompraJogo>? compraJogos { get; set; }
     }
 }

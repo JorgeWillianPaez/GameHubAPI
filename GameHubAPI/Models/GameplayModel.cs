@@ -10,7 +10,9 @@ namespace GameHubAPI.Models
         public int id { get; set; }
         public DateTime dataInicio { get; set; }
         public DateTime dataFim { get; set; }
+        public int? jogoId { get; set; }
         public JogoModel? jogo { get; set; }
+        public int? usuarioId { get; set; }
         public UsuarioModel? usuario { get; set; }
     }
 }

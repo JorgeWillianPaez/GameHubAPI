@@ -43,13 +43,23 @@ public class CategoriaController : ControllerBase
     [Route("")]
     public async Task<ActionResult> Inserir(CategoriaModel categoria)
     {
-       await _context.AddAsync(categoria);
-       await _context.SaveChangesAsync();
+        if (_context.Categoria is null) return NotFound();
+        var categorias = await _context.Categoria.ToListAsync();
+
+        CategoriaModel cat = categorias.Find(item => item.nome == categoria.nome);
+
+        if (cat is not null)
+        {
+            return Conflict();
+        }
+
+        await _context.AddAsync(categoria);
+        await _context.SaveChangesAsync();
         return Created("", categoria);
     }
 
         [HttpPut]
-   [Route("alterar")]
+   [Route("")]
    public async Task<ActionResult> Alterar(CategoriaModel categoria){
     _context.Update(categoria);
     await _context.SaveChangesAsync();
@@ -62,14 +72,14 @@ public class CategoriaController : ControllerBase
         var nomeTemp = await _context.Categoria.FindAsync(id);
 
         if(nomeTemp is null) return NotFound();
-        nomeTemp.Nome = nome;
+        nomeTemp.nome = nome;
 
         await _context.SaveChangesAsync();
         return Ok();
     }
 
     [HttpDelete]
-    [Route("excluir/{id}")]
+    [Route("{id}")]
     public async Task<ActionResult> Excluir(int id){
         var nomeTemp = await _context.Categoria.FindAsync(id);
 

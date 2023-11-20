@@ -1,11 +1,17 @@
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
 namespace GameHubAPI.Models
 {
     public class CompraJogo
     {
-        public int JogoId { get; set; }
-        public JogoModel? Jogo { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
+        public int jogoId { get; set; }
+        public JogoModel? jogo { get; set; }
 
-        public int CompraId { get; set; }
-        public CompraModel? Compra { get; set; }
+        public int compraId { get; set; }
+        public CompraModel? compra { get; set; }
     }
 }
