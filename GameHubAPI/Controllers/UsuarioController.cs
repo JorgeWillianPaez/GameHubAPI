@@ -20,6 +20,23 @@ public class UsuarioController : ControllerBase
     [Route("")]
     public async Task<ActionResult> Cadastrar(UsuarioModel usuario)
     {
+        if (_context.Usuario is null) return NotFound();
+        var users = await _context.Usuario.ToListAsync();
+
+        var user = users.Find(user => user.email == usuario.email);
+
+        if (user is not null)
+        {
+            return Conflict();
+        }
+
+        user = users.Find(user => user.nomeUsuario == usuario.nomeUsuario);
+
+        if (user is not null)
+        {
+            return Conflict();
+        }
+
         await _context.AddAsync(usuario);
         await _context.SaveChangesAsync();
         return Created("", usuario);
