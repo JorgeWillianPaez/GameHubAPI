@@ -67,4 +67,43 @@ public class UsuarioController : ControllerBase
         var usuario = await _context.Usuario.FindAsync(id);
         return usuario;
     }
+
+    [HttpPost]
+    [Route("autenticacao")]
+    public async Task<ActionResult> Login(UsuarioModel usuario)
+    {
+        if (_context.Usuario is null) return NotFound();
+        var users = await _context.Usuario.ToListAsync();
+
+        var user = users.Find(user => user.email == usuario.email);
+
+        if (user is not null)
+        {
+            if (user.senha == usuario.senha)
+            {
+                return Ok();
+            } else
+            {
+                return Conflict();
+            }
+        } else
+        {
+            user = users.Find(user => user.nomeUsuario == usuario.nomeUsuario);
+
+            if (user is not null)
+            {
+                if (user.senha == usuario.senha)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return Conflict();
+                }
+            } else
+            {
+                return NotFound();
+            }
+        }
+    }
 }
