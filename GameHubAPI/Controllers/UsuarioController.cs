@@ -70,7 +70,7 @@ public class UsuarioController : ControllerBase
 
     [HttpPost]
     [Route("autenticacao")]
-    public async Task<ActionResult> Login(UsuarioModel usuario)
+    public async Task<ActionResult<UsuarioModel>> Login(UsuarioModel usuario)
     {
         if (_context.Usuario is null) return NotFound();
         var users = await _context.Usuario.ToListAsync();
@@ -81,7 +81,7 @@ public class UsuarioController : ControllerBase
         {
             if (user.senha == usuario.senha)
             {
-                return Ok();
+                return user;
             } else
             {
                 return Conflict();
@@ -94,7 +94,7 @@ public class UsuarioController : ControllerBase
             {
                 if (user.senha == usuario.senha)
                 {
-                    return Ok();
+                    return user;
                 }
                 else
                 {

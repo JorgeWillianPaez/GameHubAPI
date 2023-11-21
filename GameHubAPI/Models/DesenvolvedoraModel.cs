@@ -11,7 +11,6 @@ namespace GameHubAPI.Models
         public int id { get; set; }
         public required string nome { get; set; }
         public required string porte { get; set; }
-
         public ICollection<JogoModel>? jogos { get; set; }
     }
 }
