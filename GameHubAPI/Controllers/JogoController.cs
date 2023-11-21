@@ -36,12 +36,19 @@ public class JogoController : ControllerBase
         return jogo;
     }
 
+    public async Task<ActionResult> Alterar(JogoModel jogo)
+    {
+        _context.Update(jogo);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
     [HttpPost]
     [Route("")]
-    public ActionResult Inserir(JogoModel jogo)
+    public async Task<ActionResult> Inserir(JogoModel jogo)
     {
-        _context?.Add(jogo);
-        _context?.SaveChanges();
+        await _context.AddAsync(jogo);
+        await _context.SaveChangesAsync();
         return Created("", jogo);
     }
 }

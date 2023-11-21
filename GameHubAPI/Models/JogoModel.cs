@@ -15,14 +15,13 @@ namespace GameHubAPI.Models
         public required string nome { get; set; }
         public required string descricao { get; set; }
         public double preco { get; set; }
-        public DateTime dataLancamento { get; set; }
-
+        public string? dataLancamento { get; set; }
+        public string? plataforma { get; set; }
+        public string? imagem { get; set; }
         public int desenvolvedoraId { get; set; }
-
         public DesenvolvedoraModel? desenvolvedora { get; set; }
-
-        public required ICollection<JogoCategoria> jogosCategorias { get; set; }
-
+        public int categoriaId { get; set; }
+        public CategoriaModel? categoria { get; set; }
         public ICollection<CompraJogo>? compraJogos { get; set; }
     }
 }
